@@ -1,13 +1,16 @@
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import '../env/env_client.dart';
 
 class DioClient {
   final Dio _dio = Dio();
   final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   DioClient() {
-    _dio.options.baseUrl = 'https://your.api.base.url';
+    _dio.options.baseUrl = EnvClient.baseUrl;
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
         final token = await _secureStorage.read(key: 'access_token');
@@ -56,4 +59,3 @@ class DioClient {
     }
   }
 }
-

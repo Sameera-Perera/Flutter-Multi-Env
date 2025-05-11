@@ -50,7 +50,7 @@ Create separate files at the root of your project:
 // lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'my_app.dart';
+import 'home_screen.dart';
 
 Future<void> main() async {
   const env = String.fromEnvironment('ENV', defaultValue: 'dev');
@@ -65,7 +65,7 @@ Future<void> main() async {
 ### 4. Update `MyApp` to Accept the Base URL
 
 ```dart
-// lib/my_app.dart
+// lib/home_screen.dart
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
