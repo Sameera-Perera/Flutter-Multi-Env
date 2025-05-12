@@ -41,3 +41,30 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# Firebase Android
+android/app/google-services.json
+
+# Firebase iOS & macOS
+ios/Runner/GoogleService-Info.plist
+macos/Runner/GoogleService-Info.plist
+
+# Firebase Crashlytics
+*.symbols
+crashlytics-build.properties
+
+# Flutter
+.packages
+build/
+.metadata
+
+# VS Code
+.vscode/
+
+# Xcode
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Pods/
+ios/.symlinks/
+ios/Podfile.lock
