@@ -149,6 +149,25 @@ my_flutter_app/
 
 ---
 
+# FlutterGen - Asset Management
+FlutterGen is a code generator for Flutter assets, fonts, colors, and more. It helps you manage your assets in a type-safe way.
+
+## Installation
+Add the following to your `pubspec.yaml`:
+
+```yaml
+dev_dependencies:
+  build_runner: ^2.4.9
+  flutter_gen_runner: ^5.4.0
+```
+
+## Usage
+Run the following command to generate the assets:
+
+```bash
+  dart run build_runner build
+```
+
 ## 🔗 Resources
 
 - [flutter_dotenv on pub.dev](https://pub.dev/packages/flutter_dotenv)
