@@ -1,9 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_multi_env/presentation/screen/nortification/notification_screen.dart';
+import 'data/data_source/firebase/firebase_messaging.dart';
 import 'firebase_options.dart';
-import 'presentation/screen/home_screen.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'presentation/screen/home/home_screen.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that we can use dotenv
@@ -25,61 +28,34 @@ Future<void> main() async {
   // Setup Firebase Messaging
   setupFirebaseMessaging();
 
+  // Set preferred orientations
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    setupInteractedMessage(navigatorKey);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      navigatorKey: navigatorKey,
       title: 'Flutter Env Example',
-      home: HomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/notification': (context) => const NotificationScreen(),
+      },
     );
   }
-}
-
-void setupFirebaseMessaging() async {
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-  NotificationSettings settings = await messaging.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
-
-  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-    debugPrint('User granted permission');
-  } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
-    debugPrint('User granted provisional permission');
-  } else {
-    debugPrint('User declined or has not accepted permission');
-  }
-
-  // Get the token
-  String? token = await messaging.getToken();
-  debugPrint("FCM Token: $token");
-
-  // Handle foreground messages
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    debugPrint('Received a message while in the foreground!');
-    debugPrint('Message data: ${message.data}');
-    if (message.notification != null) {
-      debugPrint('Message also contained a notification: ${message.notification}');
-    }
-  });
-
-  // Handle background messages
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-}
-// Define the background message handler
-@pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print("Handling a background message: ${message.messageId}");
 }
