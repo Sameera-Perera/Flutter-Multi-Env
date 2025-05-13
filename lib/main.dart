@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_multi_env/presentation/screen/nortification/notification_screen.dart';
-import 'data/data_source/firebase/firebase_messaging.dart';
+import 'data/data_source/firebase/firebase_messaging_service.dart';
 import 'firebase_options.dart';
 import 'presentation/screen/home/home_screen.dart';
 
