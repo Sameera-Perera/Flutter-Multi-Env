@@ -68,7 +68,7 @@ class AppTheme {
     primaryColor: kDarkPrimaryColor,
     scaffoldBackgroundColor: kDarkBackgroundColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: kDarkPrimaryColor,
       foregroundColor: kDarkOnPrimaryColor,
       elevation: 0,
