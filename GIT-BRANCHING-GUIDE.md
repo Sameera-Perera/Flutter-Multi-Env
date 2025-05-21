@@ -54,13 +54,3 @@ In collaborative environments, adding your name or initials can help identify ow
 ### 6. Avoid Special Characters and Spaces
 
 Stick to lowercase letters, numbers, hyphens, and slashes. Avoid spaces and special characters to prevent issues with Git commands.
-
----
-
-## 🧠 Summary of Best Practices
-
-- **Prefixes**: Use clear prefixes like `feature/`, `bugfix/`, etc.
-- **Issue Numbers**: Include relevant ticket or issue numbers.
-- **Readability**: Use hyphens to separate words.
-- **Conciseness**: Keep names short yet descriptive.
-- **Consistency**: Apply the naming convention uniformly across the team.
